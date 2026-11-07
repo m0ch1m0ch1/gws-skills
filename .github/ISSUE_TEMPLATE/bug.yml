@@ -1,22 +1,22 @@
-name: Bug report
-description: Something is not working as expected
+name: 不具合の報告
+description: 期待どおりに動かない
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Before pasting logs or output, remove secrets and account-specific details (document and spreadsheet IDs, URLs, account names, tokens, etc.).
-        Please report security vulnerabilities privately, not in a public issue.
+        ログや出力を貼る前に、秘密情報とアカウントに固有の情報 (ドキュメントやスプレッドシートの ID、URL、アカウント名、トークンなど) を消してください。
+        脆弱性は公開の Issue ではなく、非公開で報告してください (SECURITY.md を参照)。
   - type: textarea
     id: summary
     attributes:
-      label: Summary
+      label: 概要
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Steps to reproduce
+      label: 再現の手順
       placeholder: |
         1.
         2.
@@ -26,25 +26,25 @@ body:
   - type: textarea
     id: expected
     attributes:
-      label: Expected behavior
+      label: 期待した動き
     validations:
       required: true
   - type: textarea
     id: actual
     attributes:
-      label: Actual behavior
+      label: 実際の動き
     validations:
       required: true
   - type: textarea
     id: environment
     attributes:
-      label: Environment
-      description: OS, versions of the tools you used, etc.
+      label: 環境
+      description: OS、使ったツールのバージョンなど
       value: |
         - OS:
-        - Version:
+        - バージョン:
   - type: textarea
     id: logs
     attributes:
-      label: Logs / output
+      label: ログ・出力
       render: text

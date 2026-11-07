@@ -1,18 +1,18 @@
 <!-- markdownlint-disable-file MD041 -->
-## Description
+## 変更の内容
 
-<!-- What does this PR change, and why? -->
+<!-- 何を、なぜ変えるか -->
 
-Fixes # (issue)
+Fixes # (Issue の番号)
 
-## How has this been tested?
+## 確かめたこと
 
-<!-- Describe how you verified the change. -->
+<!-- 変更をどのように確かめたか -->
 
-## Checklist
+## チェックリスト
 
-<!-- Remove items that do not apply. -->
+<!-- 当てはまらない項目は消す -->
 
-- [ ] I have performed a self-review of my changes
-- [ ] I have updated the documentation accordingly
-- [ ] I have added tests that prove my fix or feature works
+- [ ] 自分で変更を見直した
+- [ ] 文書 (SKILL.md・README.md など) をそろえた
+- [ ] `bash .github/scripts/check.sh` が通る
