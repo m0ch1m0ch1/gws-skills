@@ -1,0 +1,50 @@
+name: Bug report
+description: Something is not working as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before pasting logs or output, remove secrets and account-specific details (document and spreadsheet IDs, URLs, account names, tokens, etc.).
+        Please report security vulnerabilities privately, not in a public issue.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, versions of the tools you used, etc.
+      value: |
+        - OS:
+        - Version:
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / output
+      render: text
