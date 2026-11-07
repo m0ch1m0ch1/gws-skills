@@ -7,12 +7,13 @@ Google Workspace を [gws](https://github.com/googleworkspace/cli) (Google Works
 | スキル | できること |
 | --- | --- |
 | [gws-md2gdoc](.claude/skills/gws-md2gdoc/README.md) | Markdown (手順書など) を、読みやすく組み直して Google ドキュメントにする |
+| [gws-yaml2gsheet](.claude/skills/gws-yaml2gsheet/README.md) | フォルダに入れた YAML (設定値や Kubernetes のマニフェストなど) を、Google スプレッドシートのパラメータシートにする |
 
 ## 使い始め方
 
 1. 各スキルの README の前提条件をそろえる (gws のインストールと `gws auth login` での認証など)。
 2. このリポジトリをクローンし、ルートで Claude Code を起動する。スキルは `/<スキル名>` で実行する (例: `/gws-md2gdoc`)。
-3. スキルに渡すファイルは `input/<スキル名>/` に置く。
+3. スキルに渡すファイル (スキルによってはフォルダ) は `input/<スキル名>/` に置く。置き方は各スキルの README を参照。
 
 ## 構成
 

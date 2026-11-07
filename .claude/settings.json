@@ -2,12 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(python3 -I .claude/skills/gws-md2gdoc/scripts/md2gdoc.py:*)",
+      "Bash(python3 -I .claude/skills/gws-yaml2gsheet/scripts/yaml2gsheet.py:*)",
       "Bash(gws schema:*)",
       "Bash(gws drive about get:*)",
       "Bash(gws drive files get:*)",
       "Bash(gws drive files list:*)",
       "Bash(gws drive files export:*)",
       "Bash(gws docs documents get:*)",
+      "Bash(gws sheets spreadsheets get:*)",
       "Bash(bash .github/scripts/check.sh)",
       "WebSearch",
       "WebFetch(domain:developers.google.com)",

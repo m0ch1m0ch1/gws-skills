@@ -25,7 +25,7 @@ auto mode では、`.claude/settings.json` の個別の許可と、読むだけ�
 
 ## スキルを直すとき
 
-- 直したら実際に動かして確かめる。わざと崩した入力 (無いファイル、複数の入力など) で `[NG]` になることも確かめる。ドキュメントを作るものは、作ってよいかを確認してから作り、できたものを `gws docs documents get` で読んで確かめる
+- 直したら実際に動かして確かめる。わざと崩した入力 (無いファイル、複数の入力など) で `[NG]` になることも確かめる。ドキュメントやスプレッドシートを作るものは、作ってよいかを確認してから作り、できたものを `gws docs documents get` や `gws sheets spreadsheets get` (`includeGridData` か `ranges` を付けて値と書式を含める) で読んで確かめる
 - サブコマンドや流れを変えたら、SKILL.md、スキルの README.md、スクリプト先頭のコメント、ルートの README.md をそろえる
 - スキルに必要な許可は、共有の `.claude/settings.json` に足す
 - 文書・コメント・出力は日本語で書く。例は、実際の事例ではなく `<対象>` のような形で書く
@@ -38,4 +38,4 @@ auto mode では、`.claude/settings.json` の個別の許可と、読むだけ�
 
 - 標準ライブラリだけを使う。`python3 -I` で実行する
 - `gws` は `subprocess` で引数のリストとして呼び、シェルを通さない
-- Docs API のインデックスは UTF-16 のコード単位で数える (日本語や記号を含むため)
+- Docs API のインデックスと Sheets API の文字の位置 (`TextFormatRun.startIndex` など) は、UTF-16 のコード単位で数える (日本語や記号を含むため)
