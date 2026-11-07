@@ -15,6 +15,7 @@ auto mode では、`.claude/settings.json` の個別の許可と、読むだけ�
 - `rm -rf` を使わない
 - ファイルを読むだけなら Read を使う
 - GitHub 上のものを変える `gh` の操作（PR の作成など）は、毎回、内容を示して確認してから行う。`gh` のコマンドを許可に足さない
+- コミットのメッセージと PR の本文に、`Co-Authored-By` などの Claude の帰属の行を入れない
 
 ## Google Workspace とその情報
 
