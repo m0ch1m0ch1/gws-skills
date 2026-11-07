@@ -13,7 +13,7 @@ gws-md2gdoc スキルが plan → create の順で使う。
   保存先: --folder で指定したフォルダ (URL か ID)。無ければマイドライブの gws-skills/gws-md2gdoc/ (無ければ作る)
 終了コード (plan・create で共通。この順に確かめる):
   10=gws が無い 20=未認証/認証切れ 30=入力が決まらない (無い・複数ある・指定したものが無い)
-  40=保存先を使えない (読めない・フォルダでない・作る権限が無い) 2=引数の誤り 1=そのほかの API の失敗
+  35=入力を読めない (UTF-8 でない) 40=保存先を使えない (読めない・フォルダでない・作る権限が無い) 2=引数の誤り 1=そのほかの API の失敗
 
 入力: input/gws-md2gdoc/ に置いた Markdown (.md / .markdown)。
   省略するとそこにある 1 つを使う。ファイル名だけを渡すとそこから探す。
@@ -25,6 +25,7 @@ import datetime
 import json
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -39,6 +40,7 @@ DEFAULT_FOLDER = "マイドライブ/" + "/".join(OUTPUT_FOLDERS)
 FOLDER_MIME = "application/vnd.google-apps.folder"
 OVERVIEW_HEADING = "概要"  # 最初の見出しより前の文章をまとめる見出し
 MAX_LEVEL = 4  # 手順を見出しにするのは Markdown の見出しレベル 4 (Docs の見出し 3) まで
+MAX_BODY = 500_000  # バイト / 1 回の batchUpdate の JSON の大きさ。コマンドの引数で渡すので、macOS の引数と環境変数の合計の上限 (1 MiB) の半分にする。小さくすると書き込みの回数の上限 (1 分あたり) に当たる
 
 CODE_FONT = {"weightedFontFamily": {"fontFamily": "Roboto Mono"}}  # 本文は Docs の段落スタイルのフォントのまま
 HANG = 18  # PT / リスト項目の 2 行目以降の字下げ (番号・記号の幅)。ネストしても字下げはしない (すべて左揃え)
@@ -113,11 +115,18 @@ def require_auth():
     return about.get("user", {}).get("emailAddress", "?")
 
 
-def batch_update(doc_id, requests, chunk=300):
+def batch_update(doc_id, requests):
     # リクエストは先頭から順に適用されるので、分割しても結果は変わらない
-    for i in range(0, len(requests), chunk):
-        gws("docs", "documents", "batchUpdate", params={"documentId": doc_id},
-            body={"requests": requests[i:i + chunk]})
+    chunk, size = [], 0
+    for r in requests:
+        n = len(json.dumps(r, ensure_ascii=False).encode("utf-8"))
+        if chunk and size + n > MAX_BODY:
+            gws("docs", "documents", "batchUpdate", params={"documentId": doc_id}, body={"requests": chunk})
+            chunk, size = [], 0
+        chunk.append(r)
+        size += n
+    if chunk:
+        gws("docs", "documents", "batchUpdate", params={"documentId": doc_id}, body={"requests": chunk})
 
 
 # ---------------------------------------------------------------------- inline
@@ -686,8 +695,12 @@ def prepare(args):
     account = require_auth()
     path = resolve_input(args.input)
     folder = check_folder(args.folder) if args.folder else None
-    with open(path, encoding="utf-8") as f:
-        title, blocks = heading_numbers(restructure(parse_markdown(f.read())))
+    try:
+        with open(path, encoding="utf-8-sig") as f:
+            text = f.read()
+    except UnicodeDecodeError:
+        raise Fail(35, f"{os.path.relpath(path, REPO_ROOT)} が UTF-8 ではありません", "UTF-8 で保存し直してもらってください")
+    title, blocks = heading_numbers(restructure(parse_markdown(text)))
     title = title or os.path.splitext(os.path.basename(path))[0]
     return account, path, title, blocks, folder
 
@@ -730,7 +743,7 @@ def cmd_plan(args):
     for b in blocks:
         if b["kind"] == "heading":
             print(("  " * int(b["style"][-1])) + b["text"])
-    print(f"次: 内容の確認を得てから create {os.path.basename(path)} (plan と同じオプション)")
+    print(f"次: 内容の確認を得てから create {shlex.quote(os.path.basename(path))} (plan と同じオプション)")
     return 0
 
 
