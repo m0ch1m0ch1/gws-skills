@@ -3,6 +3,7 @@
     "allow": [
       "Bash(python3 -I .claude/skills/gws-md2gdoc/scripts/md2gdoc.py:*)",
       "Bash(python3 -I .claude/skills/gws-yaml2gsheet/scripts/yaml2gsheet.py:*)",
+      "Bash(python3 -I .claude/skills/gws-meeting-history/scripts/meeting_history.py:*)",
       "Bash(gws schema:*)",
       "Bash(gws drive about get:*)",
       "Bash(gws drive files get:*)",

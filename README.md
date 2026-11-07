@@ -8,12 +8,13 @@ Google Workspace を [gws](https://github.com/googleworkspace/cli) (Google Works
 | --- | --- |
 | [gws-md2gdoc](.claude/skills/gws-md2gdoc/README.md) | Markdown (手順書など) を、読みやすく組み直して Google ドキュメントにする |
 | [gws-yaml2gsheet](.claude/skills/gws-yaml2gsheet/README.md) | フォルダに入れた YAML (設定値や Kubernetes のマニフェストなど) を、Google スプレッドシートのパラメータシートにする |
+| [gws-meeting-history](.claude/skills/gws-meeting-history/README.md) | 会議の名前から、その打ち合わせの今日までの経緯・課題と宿題・今後の予定を、カレンダーと直近の資料から要約して会話に示す |
 
 ## 使い始め方
 
 1. 各スキルの README の前提条件をそろえる (gws のインストールと `gws auth login` での認証など)。
 2. このリポジトリをクローンし、ルートで Claude Code を起動する。スキルは `/<スキル名>` で実行する (例: `/gws-md2gdoc`)。
-3. スキルに渡すファイル (スキルによってはフォルダ) は `input/<スキル名>/` に置く。置き方は各スキルの README を参照。
+3. ファイルを渡すスキルでは、ファイル (スキルによってはフォルダ) を `input/<スキル名>/` に置く。置き方は各スキルの README を参照。
 
 ## 構成
 
