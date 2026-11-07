@@ -3,3 +3,4 @@
 input/
 __pycache__/
 .claude/settings.local.json
+.claude/skills/gslides-deck
