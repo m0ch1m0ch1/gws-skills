@@ -1,6 +1,6 @@
 ---
 name: gws-yaml2gsheet
-description: YAMLからGoogleスプレッドシートのパラメータシートを作る（gwsを使う）。
+description: YAMLからGoogleスプレッドシートのパラメータシートを作る。
 allowed-tools: AskUserQuestion
 ---
 
