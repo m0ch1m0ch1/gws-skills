@@ -1,0 +1,50 @@
+name: 不具合の報告
+description: 期待どおりに動かない
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ログや出力を貼る前に、秘密情報とアカウントに固有の情報 (ドキュメントやスプレッドシートの ID、URL、アカウント名、トークンなど) を消してください。
+        脆弱性は公開の Issue ではなく、非公開で報告してください (SECURITY.md を参照)。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現の手順
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待した動き
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 実際の動き
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 環境
+      description: OS、使ったツールのバージョンなど
+      value: |
+        - OS:
+        - バージョン:
+  - type: textarea
+    id: logs
+    attributes:
+      label: ログ・出力
+      render: text

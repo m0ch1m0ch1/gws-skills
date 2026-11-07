@@ -22,7 +22,7 @@ Google Workspace を [gws](https://github.com/googleworkspace/cli) (Google Works
 ├── .claude/
 │   ├── settings.json         # 共有の許可。スキルのスクリプトと、Google Workspace を読むだけの操作を確認なしで実行する (認証情報は読ませない)
 │   └── skills/<スキル名>/     # 各スキル
-├── .github/                  # CI (検査は scripts/check.sh)
+├── .github/                  # CI (検査は scripts/check.sh)、Issue と PR のテンプレート
 ├── CLAUDE.md                 # Claude Code が作業するときの決まり
 └── input/<スキル名>/          # スキルに渡すファイル (Git 管理対象外)
 ```
@@ -32,3 +32,7 @@ Google Workspace を [gws](https://github.com/googleworkspace/cli) (Google Works
 ## 検査
 
 `bash .github/scripts/check.sh` で、CI と同じ検査を手元で実行できます。
+
+## ライセンス
+
+[MIT](LICENSE)
