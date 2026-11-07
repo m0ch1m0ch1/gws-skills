@@ -1,6 +1,6 @@
 ---
 name: gws-md2gdoc
-description: MarkdownからGoogleドキュメントを作る（gwsを使う）。
+description: MarkdownからGoogleドキュメントを作る。
 allowed-tools: AskUserQuestion
 ---
 
