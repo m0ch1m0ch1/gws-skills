@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -I .claude/skills/gws-md2gdoc/scripts/md2gdoc.py:*)",
+      "Bash(gws schema:*)",
+      "Bash(gws drive about get:*)",
+      "Bash(gws drive files get:*)",
+      "Bash(gws drive files list:*)",
+      "Bash(gws drive files export:*)",
+      "Bash(gws docs documents get:*)",
+      "Bash(bash .github/scripts/check.sh)",
+      "WebSearch",
+      "WebFetch(domain:developers.google.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Edit(.tmp/**)",
+      "Bash(sort)",
+      "Bash(sort -u)",
+      "Bash(sort -n)",
+      "Bash(sort -rn)",
+      "Bash(uniq)",
+      "Bash(uniq -c)"
+    ],
+    "deny": [
+      "Read(~/.config/gws/**)",
+      "Bash(gws auth export:*)"
+    ],
+    "ask": [
+      "Bash(gh:*)"
+    ]
+  }
+}
