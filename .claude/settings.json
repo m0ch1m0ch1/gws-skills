@@ -19,6 +19,7 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Edit(.tmp/**)",
+      "Edit(output/**)",
       "Bash(sort)",
       "Bash(sort -u)",
       "Bash(sort -n)",
