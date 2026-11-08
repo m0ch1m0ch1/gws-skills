@@ -478,7 +478,8 @@ def code_paras(b, base, prev):
     _, fg, _, _ = CODE_STYLES[kind]
     paras = []
     for i, line in enumerate(lines):
-        spans = [(0, u16(line), {**CODE_FONT, "fontSize": pt(MIN_FONT),
+        # 行末の改行まで含める (空の行の範囲が空にならず、高さもほかの行とそろう)
+        spans = [(0, u16(line) + 1, {**CODE_FONT, "fontSize": pt(MIN_FONT),
                                  "foregroundColor": fg}, "weightedFontFamily,fontSize,foregroundColor")]
         if kind == "cmd" and line.startswith("$ "):
             spans.append((0, 1, {"foregroundColor": PROMPT_COLOR}, "foregroundColor"))
@@ -559,6 +560,8 @@ def segment_requests(seg, at, width):
             reqs.append({"updateParagraphStyle": {"range": rng(s, e), "paragraphStyle": {"namedStyleType": p["style"]},
                                                   "fields": "namedStyleType"}})
         for ss, se, st, f in p["spans"]:
+            if se <= ss:  # 空の範囲は Docs API が拒む
+                continue
             reqs.append({"updateTextStyle": {"range": rng(s + tabs + ss, s + tabs + se), "textStyle": st, "fields": f}})
 
     # 2) リストグループごとに箇条書きを作成 (後ろから処理してタブ削除の影響を避ける)
@@ -610,6 +613,8 @@ def table_requests(rows, at, width):
                                              "textStyle": {"bold": r == 0},
                                              "fields": RESET_TEXT_FIELDS}})
             for ss, se, st, f in spans:
+                if se <= ss:
+                    continue
                 reqs.append({"updateTextStyle": {"range": rng(idx + ss, idx + se), "textStyle": st, "fields": f}})
 
     def cells(rows_):
