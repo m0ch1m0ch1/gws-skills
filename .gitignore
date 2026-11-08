@@ -1,6 +1,14 @@
 .DS_Store
 .tmp/
-input/
 __pycache__/
 .claude/settings.local.json
-.claude/skills/gslides-deck
+
+# input/<スキル名>/ と output/<スキル名>/ は、フォルダだけを管理し、中身は管理しない
+/input/**
+/output/**
+!/input/.gitkeep
+!/output/.gitkeep
+!/input/*/
+!/output/*/
+!/input/*/.gitkeep
+!/output/*/.gitkeep

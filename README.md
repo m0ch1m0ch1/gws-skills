@@ -26,8 +26,11 @@ Google Workspace を [gws](https://github.com/googleworkspace/cli) (Google Works
 │   └── skills/<スキル名>/     # 各スキル
 ├── .github/                  # CI (検査は scripts/check.sh)、Issue と PR のテンプレート
 ├── CLAUDE.md                 # Claude Code が作業するときの決まり
-└── input/<スキル名>/          # スキルに渡すファイル (Git 管理対象外)
+├── input/<スキル名>/          # スキルに渡すファイル (中身は Git 管理対象外)
+└── output/<スキル名>/         # スキルが手元に残すファイル (中身は Git 管理対象外)
 ```
+
+Google Workspace に作るスキルは、結果をドライブに保存します。`output/` は、手元にファイルを残すスキルだけが使います。途中のファイルは、スキルが `.tmp/<スキル名>/` に書き、終わったら消します。
 
 `.claude/settings.json` の許可は、リポジトリのルートからスキルを実行する前提で書いています。
 
